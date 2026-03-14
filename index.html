@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cognito | Performance Marketing & Affiliate Growth for Ecommerce</title>
+  <title>Cognito — Performance Marketing & Affiliate Growth for Ecommerce</title>
   <meta name="description" content="Cognito helps ecommerce brands scale through performance marketing and affiliate growth. Data-driven acquisition for ambitious ecommerce stores." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,9 +18,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -112,883 +109,487 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .creative-strip {
-      display: flex;
-      gap: 12px;
-      overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
-    }
-    .creative-track {
-      display: flex;
-      gap: 12px;
-      animation: scroll-left 40s linear infinite;
-      flex-shrink: 0;
-    }
-    .creative-track-reverse {
-      display: flex;
-      gap: 12px;
-      animation: scroll-right 45s linear infinite;
-      flex-shrink: 0;
-    }
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    @keyframes scroll-right {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
-    }
-    .creative-card {
-      flex-shrink: 0;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(148,163,184,0.1);
-    }
 
-    /* Carousel styles */
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
+    /* ── Layout ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 8px; }
+    .nav-logo-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      display: flex; align-items: center; justify-content: center;
     }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { color: #94a3b8; font-size: 14px; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+
+    /* Hero */
+    .hero-section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-top: 64px; padding: 64px 24px 80px; }
+    .hero-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 12px; border-radius: 999px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+      color: #60a5fa; font-size: 12px; font-weight: 500; margin-bottom: 32px;
     }
-    .carousel-slide {
-      flex-shrink: 0;
-      width: 100%;
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #60a5fa; }
+    .hero-h1 { font-size: clamp(40px, 7vw, 76px); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; color: #fff; margin-bottom: 24px; }
+    .hero-sub { font-size: clamp(16px, 2vw, 20px); color: #94a3b8; max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-outline { padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 600; color: #cbd5e1; border: 1px solid #334155; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-outline:hover { border-color: #64748b; color: #fff; }
+    .btn-lg { padding: 14px 28px; border-radius: 12px; font-size: 15px; font-weight: 600; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+    .stats-row { display: flex; gap: 24px; justify-content: center; margin-top: 64px; flex-wrap: wrap; }
+    .stat-pill { padding: 16px 24px; border-radius: 12px; text-align: center; }
+
+    /* Services */
+    .section { padding: 96px 24px; }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-eyebrow { color: #60a5fa; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .section-title { font-size: clamp(32px, 5vw, 52px); font-weight: 900; color: #fff; margin-bottom: 16px; }
+    .section-sub { color: #94a3b8; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .service-card { padding: 24px; border-radius: 16px; }
+    .service-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+    /* Results */
+    .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .case-card { padding: 32px; border-radius: 16px; }
+    .case-metric { font-size: 52px; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 4px; }
+    .case-label { font-size: 13px; color: #94a3b8; margin-bottom: 24px; }
+    .case-stats { display: flex; flex-direction: column; gap: 12px; }
+    .case-stat { display: flex; justify-content: space-between; font-size: 13px; }
+
+    /* Process */
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; max-width: 960px; margin: 0 auto; position: relative; }
+    .step-connector { position: absolute; top: 20px; left: calc(12.5% + 20px); right: calc(12.5% + 20px); height: 1px; background: linear-gradient(90deg, #3b82f6, #6366f1, #8b5cf6, #ec4899); opacity: 0.3; }
+    .step-item { padding: 0 16px; text-align: center; }
+    .step-num { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; margin: 0 auto 16px; }
+    .step-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .step-desc { font-size: 13px; color: #64748b; line-height: 1.5; }
+
+    /* FAQ */
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border-radius: 12px; overflow: hidden; }
+    .faq-q { width: 100%; background: none; border: none; color: #fff; font-size: 14px; font-weight: 500; padding: 20px; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer; font-family: inherit; }
+    .faq-icon { flex-shrink: 0; width: 16px; height: 16px; color: #64748b; transition: transform 0.2s; }
+    .faq-a { padding: 0 20px 20px; font-size: 13px; color: #94a3b8; line-height: 1.6; }
+
+    /* Contact */
+    .contact-form { max-width: 600px; margin: 0 auto; border-radius: 20px; padding: 40px; text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-label { font-size: 12px; color: #94a3b8; font-weight: 500; }
+    .form-input {
+      background: rgba(30,41,59,0.6); border: 1px solid #1e293b;
+      border-radius: 8px; padding: 10px 14px; color: #fff; font-size: 14px;
+      font-family: inherit; outline: none; transition: border-color 0.2s; width: 100%;
     }
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(15,23,42,0.8);
-      border: 1px solid rgba(148,163,184,0.15);
-      color: #94a3b8;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      z-index: 10;
-      backdrop-filter: blur(8px);
+    .form-input:focus { border-color: #3b82f6; }
+    .form-input::placeholder { color: #334155; }
+    .form-textarea { resize: none; }
+
+    /* Footer */
+    .footer { border-top: 1px solid #0f172a; padding: 48px 24px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; gap: 16px; }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { color: #64748b; font-size: 13px; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .cases-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(3, 1fr); }
+      .step-connector { display: none; }
     }
-    .carousel-btn:hover {
-      background: rgba(59,130,246,0.2);
-      border-color: rgba(59,130,246,0.4);
-      color: #60a5fa;
+    @media (max-width: 768px) {
+      .hidden-mobile { display: none !important; }
+      .show-mobile { display: flex !important; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-cards { display: none; }
+      .two-col { grid-template-columns: 1fr; gap: 48px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .footer-inner { flex-direction: column; text-align: center; }
     }
-    .carousel-btn-prev { left: 12px; }
-    .carousel-btn-next { right: 12px; }
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 16px;
+    @media (max-width: 480px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
     }
-    .carousel-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(148,163,184,0.3);
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .carousel-dot.active {
-      background: #3b82f6;
-      width: 18px;
-      border-radius: 3px;
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav-blur fixed top-0 left-0 right-0 z-50">
-  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-    <div class="flex items-center gap-2">
-      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-        <span class="text-white font-bold text-sm">C</span>
+<nav class="nav-blur" style="position:fixed;top:0;left:0;right:0;z-index:50;">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="nav-logo-icon">
+          <span style="color:#fff;font-weight:700;font-size:14px;">C</span>
+        </div>
+        <span style="color:#fff;font-weight:600;font-size:18px;letter-spacing:-0.01em;">Cognito</span>
       </div>
-      <span class="text-white font-semibold text-lg tracking-tight">Cognito</span>
+      <div class="nav-links hidden-mobile">
+        <a href="#services">Services</a>
+        <a href="#results">Results</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#contact" class="btn-primary btn-lg" style="font-size:14px;padding:10px 20px;">
+        <span>Get Started</span>
+      </a>
     </div>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#services" class="text-slate-400 hover:text-white text-sm transition-colors">Services</a>
-      <a href="#results" class="text-slate-400 hover:text-white text-sm transition-colors">Results</a>
-      <a href="#creatives" class="text-slate-400 hover:text-white text-sm transition-colors">Creatives</a>
-      <a href="#process" class="text-slate-400 hover:text-white text-sm transition-colors">Process</a>
-      <a href="#faq" class="text-slate-400 hover:text-white text-sm transition-colors">FAQ</a>
-    </div>
-    <a href="#contact" class="btn-primary px-4 py-2 rounded-lg text-sm font-medium text-white">
-      <span>Get Started</span>
-    </a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero-bg min-h-screen flex flex-col items-center justify-center pt-16 px-6">
-  <div class="max-w-5xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium mb-8">
-      <div class="w-1.5 h-1.5 rounded-full bg-blue-400 pulse-glow"></div>
+<section class="hero-bg hero-section">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot pulse-glow"></div>
       Performance Marketing for Ecommerce
     </div>
-    <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6">
+    <h1 class="hero-h1">
       Scale Your Brand<br/>
       <span class="gradient-text">Without the Guesswork</span>
     </h1>
-    <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+    <p class="hero-sub">
       We help ambitious ecommerce brands acquire customers profitably through
       data-driven paid media, affiliate partnerships, and creative that converts.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="#contact" class="btn-primary px-8 py-4 rounded-xl text-base font-semibold text-white inline-flex items-center gap-2">
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary btn-lg">
         <span>Start Growing Today</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
-      <a href="#results" class="px-8 py-4 rounded-xl text-base font-semibold text-slate-300 border border-slate-700 hover:border-slate-500 hover:text-white transition-all inline-flex items-center gap-2">
-        See Our Results
-      </a>
+      <a href="#results" class="btn-outline">See Our Results</a>
     </div>
-    <!-- Stats row -->
-    <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto mt-16">
-      <div class="stat-card rounded-xl p-4">
-        <div class="text-2xl md:text-3xl font-black text-white mb-1">$50M+</div>
-        <div class="text-xs text-slate-500">Ad Spend Managed</div>
+    <div class="stats-row">
+      <div class="stat-pill stat-card">
+        <div style="font-size:28px;font-weight:900;color:#fff;margin-bottom:4px;">$50M+</div>
+        <div style="font-size:12px;color:#64748b;">Ad Spend Managed</div>
       </div>
-      <div class="stat-card rounded-xl p-4">
-        <div class="text-2xl md:text-3xl font-black text-white mb-1">200+</div>
-        <div class="text-xs text-slate-500">Brands Scaled</div>
+      <div class="stat-pill stat-card">
+        <div style="font-size:28px;font-weight:900;color:#fff;margin-bottom:4px;">200+</div>
+        <div style="font-size:12px;color:#64748b;">Brands Scaled</div>
       </div>
-      <div class="stat-card rounded-xl p-4">
-        <div class="text-2xl md:text-3xl font-black text-white mb-1">4.2x</div>
-        <div class="text-xs text-slate-500">Avg. ROAS</div>
+      <div class="stat-pill stat-card">
+        <div style="font-size:28px;font-weight:900;color:#fff;margin-bottom:4px;">4.2x</div>
+        <div style="font-size:12px;color:#64748b;">Avg. ROAS</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TICKER -->
-<div class="ticker-wrap py-4 bg-slate-900/50 border-y border-slate-800">
-  <div class="ticker-content text-slate-500 text-sm font-medium">
-    <span class="mx-8">Meta Ads</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Google Ads</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">TikTok Ads</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Affiliate Marketing</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Creative Strategy</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Influencer Partnerships</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Email & SMS</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Conversion Rate Optimisation</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Meta Ads</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Google Ads</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">TikTok Ads</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Affiliate Marketing</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Creative Strategy</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Influencer Partnerships</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Email & SMS</span><span class="text-blue-500 mx-2">✦</span>
-    <span class="mx-8">Conversion Rate Optimisation</span><span class="text-blue-500 mx-2">✦</span>
+<div class="ticker-wrap" style="padding:16px 0;background:rgba(15,23,42,0.5);border-top:1px solid #0f172a;border-bottom:1px solid #0f172a;">
+  <div class="ticker-content" style="color:#475569;font-size:13px;font-weight:500;">
+    <span style="margin:0 32px;">Meta Ads</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Google Ads</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">TikTok Ads</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Affiliate Marketing</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Creative Strategy</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Influencer Partnerships</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Email & SMS</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Conversion Rate Optimisation</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Meta Ads</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Google Ads</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">TikTok Ads</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Affiliate Marketing</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Creative Strategy</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Influencer Partnerships</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Email & SMS</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
+    <span style="margin:0 32px;">Conversion Rate Optimisation</span><span style="color:#3b82f6;margin:0 8px;">✦</span>
   </div>
 </div>
 
 <!-- SERVICES -->
-<section id="services" class="py-24 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">What We Do</p>
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Full-Funnel Growth Engine</h2>
-      <p class="text-slate-400 max-w-xl mx-auto">Every channel, every touchpoint — optimised to turn browsers into buyers and buyers into loyalists.</p>
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">What We Do</div>
+      <h2 class="section-title">Full-Funnel Growth Engine</h2>
+      <p class="section-sub">Every channel, every touchpoint — optimised to turn browsers into buyers and buyers into loyalists.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Service cards -->
-      <div class="card-glass card-hover rounded-2xl p-6">
-        <div class="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+    <div class="services-grid">
+      <div class="card-glass card-hover service-card">
+        <div class="service-icon" style="background:rgba(59,130,246,0.15);">
+          <svg width="20" height="20" fill="none" stroke="#60a5fa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
-        <h3 class="text-white font-bold text-lg mb-2">Paid Social</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Meta, TikTok & Pinterest — creative-led campaigns engineered for profitable scale, not just reach.</p>
+        <h3 style="color:#fff;font-weight:700;font-size:17px;margin-bottom:8px;">Paid Social</h3>
+        <p style="color:#64748b;font-size:14px;line-height:1.6;">Meta, TikTok & Pinterest — creative-led campaigns engineered for profitable scale, not just reach.</p>
       </div>
-      <div class="card-glass card-hover rounded-2xl p-6">
-        <div class="w-10 h-10 rounded-xl bg-indigo-500/15 flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <div class="card-glass card-hover service-card">
+        <div class="service-icon" style="background:rgba(99,102,241,0.15);">
+          <svg width="20" height="20" fill="none" stroke="#818cf8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
-        <h3 class="text-white font-bold text-lg mb-2">Paid Search</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Google & Bing campaigns built around intent, capturing demand when buyers are ready to purchase.</p>
+        <h3 style="color:#fff;font-weight:700;font-size:17px;margin-bottom:8px;">Paid Search</h3>
+        <p style="color:#64748b;font-size:14px;line-height:1.6;">Google & Bing campaigns built around intent, capturing demand when buyers are ready to purchase.</p>
       </div>
-      <div class="card-glass card-hover rounded-2xl p-6">
-        <div class="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      <div class="card-glass card-hover service-card">
+        <div class="service-icon" style="background:rgba(139,92,246,0.15);">
+          <svg width="20" height="20" fill="none" stroke="#a78bfa" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <h3 class="text-white font-bold text-lg mb-2">Affiliate & Partnerships</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Performance-only affiliate networks and strategic brand partnerships that drive incremental revenue.</p>
+        <h3 style="color:#fff;font-weight:700;font-size:17px;margin-bottom:8px;">Affiliate & Partnerships</h3>
+        <p style="color:#64748b;font-size:14px;line-height:1.6;">Performance-only affiliate networks and strategic brand partnerships that drive incremental revenue.</p>
       </div>
-      <div class="card-glass card-hover rounded-2xl p-6">
-        <div class="w-10 h-10 rounded-xl bg-pink-500/15 flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      <div class="card-glass card-hover service-card">
+        <div class="service-icon" style="background:rgba(236,72,153,0.15);">
+          <svg width="20" height="20" fill="none" stroke="#f472b6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         </div>
-        <h3 class="text-white font-bold text-lg mb-2">Creative Production</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Scroll-stopping UGC, static ads, and video creatives tested and iterated weekly for maximum conversion.</p>
+        <h3 style="color:#fff;font-weight:700;font-size:17px;margin-bottom:8px;">Creative Production</h3>
+        <p style="color:#64748b;font-size:14px;line-height:1.6;">Scroll-stopping UGC, static ads, and video creatives tested and iterated weekly for maximum conversion.</p>
       </div>
-      <div class="card-glass card-hover rounded-2xl p-6">
-        <div class="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      <div class="card-glass card-hover service-card">
+        <div class="service-icon" style="background:rgba(16,185,129,0.15);">
+          <svg width="20" height="20" fill="none" stroke="#34d399" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
-        <h3 class="text-white font-bold text-lg mb-2">Email & SMS</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Retention-focused flows and campaigns that keep your customers coming back and spending more.</p>
+        <h3 style="color:#fff;font-weight:700;font-size:17px;margin-bottom:8px;">Email & SMS</h3>
+        <p style="color:#64748b;font-size:14px;line-height:1.6;">Retention-focused flows and campaigns that keep your customers coming back and spending more.</p>
       </div>
-      <div class="card-glass card-hover rounded-2xl p-6">
-        <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+      <div class="card-glass card-hover service-card">
+        <div class="service-icon" style="background:rgba(245,158,11,0.15);">
+          <svg width="20" height="20" fill="none" stroke="#fbbf24" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
         </div>
-        <h3 class="text-white font-bold text-lg mb-2">Analytics & Attribution</h3>
-        <p class="text-slate-400 text-sm leading-relaxed">Crystal-clear reporting with multi-touch attribution so you know exactly what's driving growth.</p>
+        <h3 style="color:#fff;font-weight:700;font-size:17px;margin-bottom:8px;">Analytics & Attribution</h3>
+        <p style="color:#64748b;font-size:14px;line-height:1.6;">Crystal-clear reporting with multi-touch attribution so you know exactly what's driving growth.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider max-w-5xl mx-auto"></div>
+<div class="section-divider" style="max-width:1000px;margin:0 auto;"></div>
 
-<!-- RESULTS / CASE STUDIES -->
-<section id="results" class="py-24 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-16">
-      <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Proof Points</p>
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Results That Speak</h2>
-      <p class="text-slate-400 max-w-xl mx-auto">Real numbers from real brands. No vanity metrics — just revenue, ROAS, and growth.</p>
+<!-- RESULTS -->
+<section id="results" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Proof Points</div>
+      <h2 class="section-title">Results That Speak</h2>
+      <p class="section-sub">Real numbers from real brands. No vanity metrics — just revenue, ROAS, and growth.</p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="card-glass rounded-2xl p-8">
-        <div class="text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">Fashion & Apparel</div>
-        <div class="text-5xl font-black text-white mb-1">6.8x</div>
-        <div class="text-slate-400 text-sm mb-6">Return on Ad Spend</div>
-        <div class="space-y-3">
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Monthly Revenue</span>
-            <span class="text-white font-semibold">$1.2M → $4.1M</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">CAC Reduction</span>
-            <span class="text-emerald-400 font-semibold">↓ 42%</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Timeline</span>
-            <span class="text-white font-semibold">6 months</span>
-          </div>
+    <div class="cases-grid">
+      <div class="card-glass case-card">
+        <div style="color:#60a5fa;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Fashion & Apparel</div>
+        <div class="case-metric">6.8x</div>
+        <div class="case-label">Return on Ad Spend</div>
+        <div class="case-stats">
+          <div class="case-stat"><span style="color:#475569;">Monthly Revenue</span><span style="color:#fff;font-weight:600;">$1.2M → $4.1M</span></div>
+          <div class="case-stat"><span style="color:#475569;">CAC Reduction</span><span style="color:#34d399;font-weight:600;">↓ 42%</span></div>
+          <div class="case-stat"><span style="color:#475569;">Timeline</span><span style="color:#fff;font-weight:600;">6 months</span></div>
         </div>
       </div>
-      <div class="card-glass rounded-2xl p-8">
-        <div class="text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">Health & Wellness</div>
-        <div class="text-5xl font-black text-white mb-1">340%</div>
-        <div class="text-slate-400 text-sm mb-6">Revenue Growth YoY</div>
-        <div class="space-y-3">
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Affiliate Revenue</span>
-            <span class="text-white font-semibold">$0 → $800K/mo</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Active Partners</span>
-            <span class="text-emerald-400 font-semibold">↑ 0 to 280</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Timeline</span>
-            <span class="text-white font-semibold">12 months</span>
-          </div>
+      <div class="card-glass case-card">
+        <div style="color:#818cf8;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Health & Wellness</div>
+        <div class="case-metric">340%</div>
+        <div class="case-label">Revenue Growth YoY</div>
+        <div class="case-stats">
+          <div class="case-stat"><span style="color:#475569;">Affiliate Revenue</span><span style="color:#fff;font-weight:600;">$0 → $800K/mo</span></div>
+          <div class="case-stat"><span style="color:#475569;">Active Partners</span><span style="color:#34d399;font-weight:600;">↑ 0 to 280</span></div>
+          <div class="case-stat"><span style="color:#475569;">Timeline</span><span style="color:#fff;font-weight:600;">12 months</span></div>
         </div>
       </div>
-      <div class="card-glass rounded-2xl p-8">
-        <div class="text-purple-400 text-xs font-semibold uppercase tracking-wider mb-4">Home & Living</div>
-        <div class="text-5xl font-black text-white mb-1">4.5x</div>
-        <div class="text-slate-400 text-sm mb-6">Blended ROAS</div>
-        <div class="space-y-3">
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Ad Spend Scaled</span>
-            <span class="text-white font-semibold">$30K → $180K/mo</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Conversion Rate</span>
-            <span class="text-emerald-400 font-semibold">↑ 2.1% to 4.7%</span>
-          </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-slate-500">Timeline</span>
-            <span class="text-white font-semibold">9 months</span>
-          </div>
+      <div class="card-glass case-card">
+        <div style="color:#a78bfa;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px;">Home & Living</div>
+        <div class="case-metric">4.5x</div>
+        <div class="case-label">Blended ROAS</div>
+        <div class="case-stats">
+          <div class="case-stat"><span style="color:#475569;">Ad Spend Scaled</span><span style="color:#fff;font-weight:600;">$30K → $180K/mo</span></div>
+          <div class="case-stat"><span style="color:#475569;">Conversion Rate</span><span style="color:#34d399;font-weight:600;">↑ 2.1% to 4.7%</span></div>
+          <div class="case-stat"><span style="color:#475569;">Timeline</span><span style="color:#fff;font-weight:600;">9 months</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider max-w-5xl mx-auto"></div>
-
-<!-- CREATIVES SHOWCASE -->
-<section id="creatives" class="py-24 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 mb-10">
-    <div class="text-center">
-      <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Creative Portfolio</p>
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Ads That Actually Convert</h2>
-      <p class="text-slate-400 max-w-xl mx-auto">A snapshot of winning creatives across our brand portfolio — tested, iterated, and proven at scale.</p>
-    </div>
-  </div>
-
-  <!-- Creative strips rendered by React -->
-  <div id="creative-root"></div>
-</section>
-
-<div class="section-divider max-w-5xl mx-auto"></div>
+<div class="section-divider" style="max-width:1000px;margin:0 auto;"></div>
 
 <!-- PROCESS -->
-<section id="process" class="py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-16">
-      <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">How It Works</p>
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">From Zero to Scale</h2>
-      <p class="text-slate-400 max-w-xl mx-auto">A proven 90-day sprint to establish your growth foundation, then continuous optimisation beyond.</p>
+<section id="process" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">How It Works</div>
+      <h2 class="section-title">From Zero to Scale</h2>
+      <p class="section-sub">A proven 90-day sprint to establish your growth foundation, then continuous optimisation beyond.</p>
     </div>
-    <div class="space-y-6">
-      <div class="card-glass rounded-2xl p-6 flex gap-5">
-        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center text-white font-bold text-sm">1</div>
-        <div>
-          <h3 class="text-white font-bold text-lg mb-1">Discovery & Audit</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">We deep-dive into your current performance, competitors, and customer data to build a bespoke growth blueprint. No templates — every strategy is built from scratch.</p>
-        </div>
+    <div class="steps-grid" style="position:relative;">
+      <div class="step-connector"></div>
+      <div class="step-item">
+        <div class="step-num" style="background:linear-gradient(135deg,#3b82f6,#6366f1);">1</div>
+        <div class="step-title">Discovery & Audit</div>
+        <div class="step-desc">Deep-dive into your current performance, competitors, and customers to build a bespoke growth blueprint.</div>
       </div>
-      <div class="card-glass rounded-2xl p-6 flex gap-5">
-        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-indigo-500 flex items-center justify-center text-white font-bold text-sm">2</div>
-        <div>
-          <h3 class="text-white font-bold text-lg mb-1">Creative & Campaign Build</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Our creative team produces a full suite of ad assets while our media buyers build out campaign architecture across all relevant channels. Launch-ready in 2 weeks.</p>
-        </div>
+      <div class="step-item">
+        <div class="step-num" style="background:linear-gradient(135deg,#6366f1,#8b5cf6);">2</div>
+        <div class="step-title">Creative & Campaign Build</div>
+        <div class="step-desc">Full suite of ad assets and campaign architecture across all relevant channels. Launch-ready in 2 weeks.</div>
       </div>
-      <div class="card-glass rounded-2xl p-6 flex gap-5">
-        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-purple-500 flex items-center justify-center text-white font-bold text-sm">3</div>
-        <div>
-          <h3 class="text-white font-bold text-lg mb-1">Test, Learn & Iterate</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">Weekly creative testing cadence, bi-weekly strategy reviews, and rapid iteration based on data. We kill losers fast and scale winners hard.</p>
-        </div>
+      <div class="step-item">
+        <div class="step-num" style="background:linear-gradient(135deg,#8b5cf6,#a855f7);">3</div>
+        <div class="step-title">Test, Learn & Iterate</div>
+        <div class="step-desc">Weekly creative testing, bi-weekly strategy reviews. Kill losers fast, scale winners hard.</div>
       </div>
-      <div class="card-glass rounded-2xl p-6 flex gap-5">
-        <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-pink-500 flex items-center justify-center text-white font-bold text-sm">4</div>
-        <div>
-          <h3 class="text-white font-bold text-lg mb-1">Scale & Compound</h3>
-          <p class="text-slate-400 text-sm leading-relaxed">As winners emerge, we scale budget with confidence. Layer in affiliate partnerships, retention channels, and new markets to build a compound growth engine.</p>
-        </div>
+      <div class="step-item">
+        <div class="step-num" style="background:linear-gradient(135deg,#a855f7,#ec4899);">4</div>
+        <div class="step-title">Scale & Compound</div>
+        <div class="step-desc">Layer in affiliates, retention channels, and new markets to build a compound growth engine.</div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider max-w-5xl mx-auto"></div>
+<div class="section-divider" style="max-width:1000px;margin:0 auto;"></div>
 
 <!-- FAQ -->
-<section id="faq" class="py-24 px-6">
-  <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-16">
-      <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">FAQ</p>
-      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Common Questions</h2>
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">FAQ</div>
+      <h2 class="section-title">Common Questions</h2>
     </div>
-    <div id="faq-root"></div>
+    <div class="faq-list">
+
+      <div class="faq-item card-glass">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What types of ecommerce brands do you work with?
+          <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-a" style="display:none;">We work with DTC ecommerce brands doing $500K+ in annual revenue, primarily in fashion, health & wellness, beauty, home, and food & beverage. If you're scaling a physical product online, we're built for you.</div>
+      </div>
+
+      <div class="faq-item card-glass">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How quickly can we expect to see results?
+          <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-a" style="display:none;">Most clients see meaningful improvements within the first 30 days. Significant revenue impact typically becomes visible by month 2-3 as we compound learnings across channels.</div>
+      </div>
+
+      <div class="faq-item card-glass">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you require long-term contracts?
+          <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-a" style="display:none;">We offer 3-month initial engagements to establish foundations, then roll to monthly thereafter. We believe in earning your business every month.</div>
+      </div>
+
+      <div class="faq-item card-glass">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What's your minimum ad spend requirement?
+          <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-a" style="display:none;">We typically work with brands spending $15K/month or more in paid media. This ensures enough data velocity for meaningful testing and optimisation.</div>
+      </div>
+
+      <div class="faq-item card-glass">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How does your affiliate programme work?
+          <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-a" style="display:none;">We recruit, vet, and manage affiliates on a pure performance basis — you only pay for sales generated. We handle contracts, tracking, creative assets, and ongoing partner communication.</div>
+      </div>
+
+      <div class="faq-item card-glass">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does onboarding look like?
+          <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-a" style="display:none;">Week 1: Discovery & audit. Week 2: Strategy presentation & creative brief. Weeks 3-4: Build & QA. Week 5: Launch. The whole process is structured to minimise disruption to your business.</div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<div class="section-divider max-w-5xl mx-auto"></div>
+<div class="section-divider" style="max-width:1000px;margin:0 auto;"></div>
 
 <!-- CONTACT -->
-<section id="contact" class="py-24 px-6">
-  <div class="max-w-2xl mx-auto text-center">
-    <p class="text-blue-400 text-sm font-semibold uppercase tracking-widest mb-3">Get In Touch</p>
-    <h2 class="text-4xl md:text-5xl font-black text-white mb-4">Ready to Scale?</h2>
-    <p class="text-slate-400 mb-10">Tell us about your brand and we'll put together a custom growth plan. No obligations, no fluff.</p>
-    <div id="contact-root"></div>
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-title">Ready to Scale?</h2>
+      <p class="section-sub">Tell us about your brand and we'll put together a custom growth plan. No obligations, no fluff.</p>
+    </div>
+    <form class="contact-form card-glass" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Your Name</label>
+          <input type="text" class="form-input" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Work Email</label>
+          <input type="email" class="form-input" placeholder="jane@brand.com" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Annual Revenue</label>
+        <select class="form-input" required style="color:#94a3b8;">
+          <option value="" disabled selected>Select range…</option>
+          <option style="color:#fff;background:#0f172a;">$500K – $1M</option>
+          <option style="color:#fff;background:#0f172a;">$1M – $5M</option>
+          <option style="color:#fff;background:#0f172a;">$5M – $20M</option>
+          <option style="color:#fff;background:#0f172a;">$20M+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tell Us About Your Brand</label>
+        <textarea class="form-input form-textarea" rows="4" placeholder="What are you selling, where are you now, and where do you want to be?" required></textarea>
+      </div>
+      <button type="submit" class="btn-primary btn-lg" style="width:100%;justify-content:center;padding:14px;">
+        <span>Send Message →</span>
+      </button>
+    </form>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="border-t border-slate-800 py-12 px-6">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-    <div class="flex items-center gap-2">
-      <div class="w-6 h-6 rounded-md bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
-        <span class="text-white font-bold text-xs">C</span>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon" style="width:24px;height:24px;border-radius:6px;">
+        <span style="color:#fff;font-weight:700;font-size:11px;">C</span>
       </div>
-      <span class="text-white font-semibold">Cognito</span>
+      <span style="color:#fff;font-weight:600;">Cognito</span>
     </div>
-    <p class="text-slate-500 text-sm">© 2025 Cognito. All rights reserved.</p>
-    <div class="flex gap-6 text-sm text-slate-500">
-      <a href="#" class="hover:text-white transition-colors">Privacy</a>
-      <a href="#" class="hover:text-white transition-colors">Terms</a>
+    <p style="color:#334155;font-size:13px;">© 2025 Cognito. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
     </div>
   </div>
 </footer>
 
-<!-- REACT APP -->
-<script type="text/babel">
-const { useState, useEffect, useRef } = React;
-
-// ── Brand creative data ──────────────────────────────────────────────────────
-const brands = [
-  {
-    name: "Lumière Skin",
-    color: "#f9a8d4",
-    accent: "#ec4899",
-    bg: "linear-gradient(135deg,#1a0a12 0%,#2d1020 100%)",
-    creatives: [
-      {
-        type: "ugc",
-        w: 160, h: 200,
-        label: "UGC – Before/After",
-        desc: "Real results, real people",
-        tag: "3.2x ROAS",
-        icon: "✨"
-      },
-      {
-        type: "static",
-        w: 200, h: 200,
-        label: "Static – Product Hero",
-        desc: "Clean aesthetic, premium feel",
-        tag: "CTR +18%",
-        icon: "🌸"
-      },
-      {
-        type: "video",
-        w: 160, h: 200,
-        label: "Video – Routine",
-        desc: "15-sec scroll-stopper",
-        tag: "CPM ↓22%",
-        icon: "🎬"
-      },
-      {
-        type: "carousel",
-        w: 220, h: 200,
-        label: "Carousel – Benefits",
-        desc: "5-card swipe sequence",
-        tag: "CPA ↓31%",
-        icon: "💎"
-      },
-    ]
-  },
-  {
-    name: "Forge Athletics",
-    color: "#93c5fd",
-    accent: "#3b82f6",
-    bg: "linear-gradient(135deg,#050d1a 0%,#0a1628 100%)",
-    creatives: [
-      {
-        type: "video",
-        w: 200, h: 200,
-        label: "Video – Athlete POV",
-        desc: "High-intensity hook",
-        tag: "VTR 68%",
-        icon: "⚡"
-      },
-      {
-        type: "static",
-        w: 160, h: 200,
-        label: "Static – Gear Drop",
-        desc: "Launch campaign asset",
-        tag: "ROAS 5.1x",
-        icon: "🏋️"
-      },
-      {
-        type: "ugc",
-        w: 180, h: 200,
-        label: "UGC – Testimonial",
-        desc: "Community-driven proof",
-        tag: "CVR +24%",
-        icon: "🔥"
-      },
-      {
-        type: "carousel",
-        w: 200, h: 200,
-        label: "Carousel – Lineup",
-        desc: "Full range showcase",
-        tag: "AOV +$42",
-        icon: "🎯"
-      },
-    ]
-  },
-  {
-    name: "Verdant Home",
-    color: "#6ee7b7",
-    accent: "#10b981",
-    bg: "linear-gradient(135deg,#041510 0%,#082818 100%)",
-    creatives: [
-      {
-        type: "static",
-        w: 220, h: 200,
-        label: "Static – Room Scene",
-        desc: "Lifestyle aspirational",
-        tag: "CTR +22%",
-        icon: "🌿"
-      },
-      {
-        type: "video",
-        w: 160, h: 200,
-        label: "Video – Unboxing",
-        desc: "Premium reveal moment",
-        tag: "ROAS 4.8x",
-        icon: "📦"
-      },
-      {
-        type: "ugc",
-        w: 200, h: 200,
-        label: "UGC – Shelfie",
-        desc: "User showcase creative",
-        tag: "CPA ↓28%",
-        icon: "🏡"
-      },
-      {
-        type: "carousel",
-        w: 180, h: 200,
-        label: "Carousel – How-to",
-        desc: "Educational sequence",
-        tag: "LTV +18%",
-        icon: "✦"
-      },
-    ]
-  },
-  {
-    name: "Nova Nutrition",
-    color: "#fcd34d",
-    accent: "#f59e0b",
-    bg: "linear-gradient(135deg,#140d00 0%,#291a00 100%)",
-    creatives: [
-      {
-        type: "ugc",
-        w: 180, h: 200,
-        label: "UGC – Transformation",
-        desc: "90-day journey story",
-        tag: "CVR +41%",
-        icon: "💪"
-      },
-      {
-        type: "video",
-        w: 200, h: 200,
-        label: "Video – Science Hook",
-        desc: "Credibility-first format",
-        tag: "VTR 72%",
-        icon: "🔬"
-      },
-      {
-        type: "static",
-        w: 160, h: 200,
-        label: "Static – Stack Shot",
-        desc: "Product range visual",
-        tag: "ROAS 6.2x",
-        icon: "⭐"
-      },
-      {
-        type: "carousel",
-        w: 200, h: 200,
-        label: "Carousel – Flavours",
-        desc: "Range discovery flow",
-        tag: "AOV +$29",
-        icon: "🌟"
-      },
-    ]
-  },
-];
-
-// Round-robin interleave: pick one creative per brand in rotation until all exhausted
-function interleaveCreatives(brands) {
-  const queues = brands.map(b => b.creatives.map(c => ({ ...c, brand: b })));
-  const result = [];
-  let hasMore = true;
-  while (hasMore) {
-    hasMore = false;
-    for (const q of queues) {
-      if (q.length > 0) {
-        result.push(q.shift());
-        hasMore = true;
-      }
-    }
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = answer.style.display !== 'none';
+    answer.style.display = isOpen ? 'none' : 'block';
+    icon.style.transform = isOpen ? '' : 'rotate(45deg)';
   }
-  return result;
-}
 
-function CreativeCard({ creative }) {
-  const b = creative.brand;
-  return (
-    <div
-      className="creative-card"
-      style={{ width: creative.w, background: b.bg }}
-    >
-      <div style={{ padding: '14px', height: creative.h, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <div>
-          <div style={{ fontSize: '28px', marginBottom: '8px' }}>{creative.icon}</div>
-          <div style={{ color: b.color, fontSize: '10px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>{creative.type}</div>
-          <div style={{ color: '#f1f5f9', fontSize: '12px', fontWeight: '600', lineHeight: '1.3', marginBottom: '4px' }}>{creative.label}</div>
-          <div style={{ color: '#94a3b8', fontSize: '11px', lineHeight: '1.4' }}>{creative.desc}</div>
-        </div>
-        <div>
-          <div style={{ color: '#0f172a', background: b.accent, fontSize: '10px', fontWeight: '700', padding: '3px 8px', borderRadius: '20px', display: 'inline-block' }}>{creative.tag}</div>
-          <div style={{ color: b.color, fontSize: '10px', marginTop: '6px', opacity: 0.8 }}>{b.name}</div>
-        </div>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    form.innerHTML = `
+      <div style="text-align:center;padding:40px 0;">
+        <div style="font-size:48px;margin-bottom:16px;">✅</div>
+        <h3 style="color:#fff;font-weight:700;font-size:20px;margin-bottom:8px;">Message Received</h3>
+        <p style="color:#94a3b8;font-size:14px;">We'll be in touch within 1 business day with a custom plan.</p>
       </div>
-    </div>
-  );
-}
-
-function CreativeStrips() {
-  const interleaved = interleaveCreatives(brands);
-  // Split interleaved list into two rows
-  const row1 = interleaved.filter((_, i) => i % 2 === 0);
-  const row2 = interleaved.filter((_, i) => i % 2 === 1);
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      {/* Row 1 – scrolls left */}
-      <div className="creative-strip">
-        <div className="creative-track">
-          {[...row1, ...row1].map((c, i) => <CreativeCard key={i} creative={c} />)}
-        </div>
-      </div>
-      {/* Row 2 – scrolls right */}
-      <div className="creative-strip">
-        <div className="creative-track-reverse">
-          {[...row2, ...row2].map((c, i) => <CreativeCard key={i} creative={c} />)}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Carousel for Case Studies ─────────────────────────────────────────────────
-const caseStudies = [
-  {
-    category: "Fashion & Apparel",
-    categoryColor: "text-blue-400",
-    metric: "6.8x",
-    metricLabel: "Return on Ad Spend",
-    stats: [
-      { label: "Monthly Revenue", value: "$1.2M → $4.1M", highlight: false },
-      { label: "CAC Reduction", value: "↓ 42%", highlight: true },
-      { label: "Timeline", value: "6 months", highlight: false },
-    ]
-  },
-  {
-    category: "Health & Wellness",
-    categoryColor: "text-indigo-400",
-    metric: "340%",
-    metricLabel: "Revenue Growth YoY",
-    stats: [
-      { label: "Affiliate Revenue", value: "$0 → $800K/mo", highlight: false },
-      { label: "Active Partners", value: "↑ 0 to 280", highlight: true },
-      { label: "Timeline", value: "12 months", highlight: false },
-    ]
-  },
-  {
-    category: "Home & Living",
-    categoryColor: "text-purple-400",
-    metric: "4.5x",
-    metricLabel: "Blended ROAS",
-    stats: [
-      { label: "Ad Spend Scaled", value: "$30K → $180K/mo", highlight: false },
-      { label: "Conversion Rate", value: "↑ 2.1% to 4.7%", highlight: true },
-      { label: "Timeline", value: "9 months", highlight: false },
-    ]
-  },
-  {
-    category: "Beauty & Cosmetics",
-    categoryColor: "text-pink-400",
-    metric: "5.3x",
-    metricLabel: "Blended ROAS",
-    stats: [
-      { label: "Revenue Growth", value: "$800K → $3.2M/yr", highlight: false },
-      { label: "Email Revenue", value: "↑ 0% to 34%", highlight: true },
-      { label: "Timeline", value: "8 months", highlight: false },
-    ]
-  },
-  {
-    category: "Food & Beverage",
-    categoryColor: "text-emerald-400",
-    metric: "210%",
-    metricLabel: "Subscriber Growth",
-    stats: [
-      { label: "Subscription Rev", value: "$120K → $370K/mo", highlight: false },
-      { label: "Churn Rate", value: "↓ 8.2% to 3.1%", highlight: true },
-      { label: "Timeline", value: "10 months", highlight: false },
-    ]
-  },
-];
-
-function CaseStudyCarousel() {
-  const [current, setCurrent] = React.useState(0);
-  const total = caseStudies.length;
-
-  const prev = () => setCurrent(c => (c - 1 + total) % total);
-  const next = () => setCurrent(c => (c + 1) % total);
-
-  // Show 3 cards at a time on md+, 1 on mobile
-  const [perView, setPerView] = React.useState(3);
-  React.useEffect(() => {
-    const update = () => setPerView(window.innerWidth >= 768 ? 3 : 1);
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, []);
-
-  const maxIndex = total - perView;
-
-  const goPrev = () => setCurrent(c => Math.max(0, c - 1));
-  const goNext = () => setCurrent(c => Math.min(maxIndex, c + 1));
-
-  return (
-    <div style={{ position: 'relative' }}>
-      <div className="carousel-container">
-        <div
-          className="carousel-track"
-          style={{ transform: `translateX(-${current * (100 / perView)}%)` }}
-        >
-          {caseStudies.map((cs, i) => (
-            <div
-              key={i}
-              className="carousel-slide"
-              style={{ width: `${100 / perView}%`, padding: '0 8px' }}
-            >
-              <div className="card-glass rounded-2xl p-8 h-full">
-                <div className={`${cs.categoryColor} text-xs font-semibold uppercase tracking-wider mb-4`}>{cs.category}</div>
-                <div className="text-5xl font-black text-white mb-1">{cs.metric}</div>
-                <div className="text-slate-400 text-sm mb-6">{cs.metricLabel}</div>
-                <div className="space-y-3">
-                  {cs.stats.map((s, j) => (
-                    <div key={j} className="flex justify-between text-sm">
-                      <span className="text-slate-500">{s.label}</span>
-                      <span className={s.highlight ? "text-emerald-400 font-semibold" : "text-white font-semibold"}>{s.value}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {current > 0 && (
-        <button className="carousel-btn carousel-btn-prev" onClick={goPrev}>
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
-          </svg>
-        </button>
-      )}
-      {current < maxIndex && (
-        <button className="carousel-btn carousel-btn-next" onClick={goNext}>
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-          </svg>
-        </button>
-      )}
-
-      <div className="carousel-dots">
-        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-          <div
-            key={i}
-            className={`carousel-dot ${i === current ? 'active' : ''}`}
-            onClick={() => setCurrent(i)}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-// ── FAQ ──────────────────────────────────────────────────────────────────────
-const faqs = [
-  { q: "What types of ecommerce brands do you work with?", a: "We work with DTC ecommerce brands doing $500K+ in annual revenue, primarily in fashion, health & wellness, beauty, home, and food & beverage. If you're scaling a physical product online, we're built for you." },
-  { q: "How quickly can we expect to see results?", a: "Most clients see meaningful improvements within the first 30 days. Significant revenue impact typically becomes visible by month 2-3 as we compound learnings across channels." },
-  { q: "Do you require long-term contracts?", a: "We offer 3-month initial engagements to establish foundations, then roll to monthly thereafter. We believe in earning your business every month." },
-  { q: "What's your minimum ad spend requirement?", a: "We typically work with brands spending $15K/month or more in paid media. This ensures enough data velocity for meaningful testing and optimisation." },
-  { q: "How does your affiliate programme work?", a: "We recruit, vet, and manage affiliates on a pure performance basis — you only pay for sales generated. We handle contracts, tracking, creative assets, and ongoing partner communication." },
-  { q: "What does onboarding look like?", a: "Week 1: Discovery & audit. Week 2: Strategy presentation & creative brief. Weeks 3-4: Build & QA. Week 5: Launch. The whole process is structured to minimise disruption to your business." },
-];
-
-function FAQ() {
-  const [open, setOpen] = useState(null);
-  return (
-    <div className="space-y-3">
-      {faqs.map((f, i) => (
-        <div key={i} className="card-glass rounded-xl overflow-hidden">
-          <button
-            onClick={() => setOpen(open === i ? null : i)}
-            className="w-full text-left p-5 flex items-center justify-between gap-4"
-          >
-            <span className="text-white font-medium text-sm">{f.q}</span>
-            <svg
-              className="flex-shrink-0 w-4 h-4 text-slate-400 transition-transform"
-              style={{ transform: open === i ? 'rotate(45deg)' : 'none' }}
-              fill="none" stroke="currentColor" viewBox="0 0 24 24"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-          </button>
-          {open === i && (
-            <div className="px-5 pb-5 text-slate-400 text-sm leading-relaxed">{f.a}</div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
-
-// ── Contact Form ─────────────────────────────────────────────────────────────
-function ContactForm() {
-  const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', revenue: '', message: '' });
-  const handle = e => setForm({ ...form, [e.target.name]: e.target.value });
-  const submit = e => { e.preventDefault(); setSent(true); };
-
-  if (sent) return (
-    <div className="card-glass rounded-2xl p-10 text-center">
-      <div className="text-4xl mb-4">✅</div>
-      <h3 className="text-white font-bold text-xl mb-2">Message Received</h3>
-      <p className="text-slate-400 text-sm">We'll be in touch within 1 business day with a custom plan.</p>
-    </div>
-  );
-
-  return (
-    <form onSubmit={submit} className="card-glass rounded-2xl p-8 text-left space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="text-slate-400 text-xs font-medium block mb-1.5">Your Name</label>
-          <input name="name" value={form.name} onChange={handle} required placeholder="Jane Smith"
-            className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2.5 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors" />
-        </div>
-        <div>
-          <label className="text-slate-400 text-xs font-medium block mb-1.5">Work Email</label>
-          <input name="email" type="email" value={form.email} onChange={handle} required placeholder="jane@brand.com"
-            className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2.5 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors" />
-        </div>
-      </div>
-      <div>
-        <label className="text-slate-400 text-xs font-medium block mb-1.5">Annual Revenue</label>
-        <select name="revenue" value={form.revenue} onChange={handle} required
-          className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500 transition-colors"
-          style={{ color: form.revenue ? '#fff' : '#475569' }}>
-          <option value="" disabled>Select range…</option>
-          <option>$500K – $1M</option>
-          <option>$1M – $5M</option>
-          <option>$5M – $20M</option>
-          <option>$20M+</option>
-        </select>
-      </div>
-      <div>
-        <label className="text-slate-400 text-xs font-medium block mb-1.5">Tell Us About Your Brand</label>
-        <textarea name="message" value={form.message} onChange={handle} required rows={4} placeholder="What are you selling, where are you now, and where do you want to be?"
-          className="w-full bg-slate-800/50 border border-slate-700 rounded-lg px-3 py-2.5 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-blue-500 transition-colors resize-none" />
-      </div>
-      <button type="submit" className="btn-primary w-full py-3 rounded-xl text-sm font-semibold text-white">
-        <span>Send Message →</span>
-      </button>
-    </form>
-  );
-}
-
-// ── Mount ────────────────────────────────────────────────────────────────────
-ReactDOM.render(<CreativeStrips />, document.getElementById('creative-root'));
-ReactDOM.render(<CaseStudyCarousel />, document.getElementById('results-carousel'));
-ReactDOM.render(<FAQ />, document.getElementById('faq-root'));
-ReactDOM.render(<ContactForm />, document.getElementById('contact-root'));
+    `;
+  }
 </script>
 
 </body>
