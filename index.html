@@ -144,6 +144,65 @@
       overflow: hidden;
       border: 1px solid rgba(148,163,184,0.1);
     }
+
+    /* Carousel styles */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .carousel-slide {
+      flex-shrink: 0;
+      width: 100%;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(148,163,184,0.15);
+      color: #94a3b8;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+    }
+    .carousel-btn:hover {
+      background: rgba(59,130,246,0.2);
+      border-color: rgba(59,130,246,0.4);
+      color: #60a5fa;
+    }
+    .carousel-btn-prev { left: 12px; }
+    .carousel-btn-next { right: 12px; }
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(148,163,184,0.3);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .carousel-dot.active {
+      background: #3b82f6;
+      width: 18px;
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
@@ -695,6 +754,145 @@ function CreativeStrips() {
   );
 }
 
+// ── Carousel for Case Studies ─────────────────────────────────────────────────
+const caseStudies = [
+  {
+    category: "Fashion & Apparel",
+    categoryColor: "text-blue-400",
+    metric: "6.8x",
+    metricLabel: "Return on Ad Spend",
+    stats: [
+      { label: "Monthly Revenue", value: "$1.2M → $4.1M", highlight: false },
+      { label: "CAC Reduction", value: "↓ 42%", highlight: true },
+      { label: "Timeline", value: "6 months", highlight: false },
+    ]
+  },
+  {
+    category: "Health & Wellness",
+    categoryColor: "text-indigo-400",
+    metric: "340%",
+    metricLabel: "Revenue Growth YoY",
+    stats: [
+      { label: "Affiliate Revenue", value: "$0 → $800K/mo", highlight: false },
+      { label: "Active Partners", value: "↑ 0 to 280", highlight: true },
+      { label: "Timeline", value: "12 months", highlight: false },
+    ]
+  },
+  {
+    category: "Home & Living",
+    categoryColor: "text-purple-400",
+    metric: "4.5x",
+    metricLabel: "Blended ROAS",
+    stats: [
+      { label: "Ad Spend Scaled", value: "$30K → $180K/mo", highlight: false },
+      { label: "Conversion Rate", value: "↑ 2.1% to 4.7%", highlight: true },
+      { label: "Timeline", value: "9 months", highlight: false },
+    ]
+  },
+  {
+    category: "Beauty & Cosmetics",
+    categoryColor: "text-pink-400",
+    metric: "5.3x",
+    metricLabel: "Blended ROAS",
+    stats: [
+      { label: "Revenue Growth", value: "$800K → $3.2M/yr", highlight: false },
+      { label: "Email Revenue", value: "↑ 0% to 34%", highlight: true },
+      { label: "Timeline", value: "8 months", highlight: false },
+    ]
+  },
+  {
+    category: "Food & Beverage",
+    categoryColor: "text-emerald-400",
+    metric: "210%",
+    metricLabel: "Subscriber Growth",
+    stats: [
+      { label: "Subscription Rev", value: "$120K → $370K/mo", highlight: false },
+      { label: "Churn Rate", value: "↓ 8.2% to 3.1%", highlight: true },
+      { label: "Timeline", value: "10 months", highlight: false },
+    ]
+  },
+];
+
+function CaseStudyCarousel() {
+  const [current, setCurrent] = React.useState(0);
+  const total = caseStudies.length;
+
+  const prev = () => setCurrent(c => (c - 1 + total) % total);
+  const next = () => setCurrent(c => (c + 1) % total);
+
+  // Show 3 cards at a time on md+, 1 on mobile
+  const [perView, setPerView] = React.useState(3);
+  React.useEffect(() => {
+    const update = () => setPerView(window.innerWidth >= 768 ? 3 : 1);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  const maxIndex = total - perView;
+
+  const goPrev = () => setCurrent(c => Math.max(0, c - 1));
+  const goNext = () => setCurrent(c => Math.min(maxIndex, c + 1));
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <div className="carousel-container">
+        <div
+          className="carousel-track"
+          style={{ transform: `translateX(-${current * (100 / perView)}%)` }}
+        >
+          {caseStudies.map((cs, i) => (
+            <div
+              key={i}
+              className="carousel-slide"
+              style={{ width: `${100 / perView}%`, padding: '0 8px' }}
+            >
+              <div className="card-glass rounded-2xl p-8 h-full">
+                <div className={`${cs.categoryColor} text-xs font-semibold uppercase tracking-wider mb-4`}>{cs.category}</div>
+                <div className="text-5xl font-black text-white mb-1">{cs.metric}</div>
+                <div className="text-slate-400 text-sm mb-6">{cs.metricLabel}</div>
+                <div className="space-y-3">
+                  {cs.stats.map((s, j) => (
+                    <div key={j} className="flex justify-between text-sm">
+                      <span className="text-slate-500">{s.label}</span>
+                      <span className={s.highlight ? "text-emerald-400 font-semibold" : "text-white font-semibold"}>{s.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {current > 0 && (
+        <button className="carousel-btn carousel-btn-prev" onClick={goPrev}>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+      )}
+      {current < maxIndex && (
+        <button className="carousel-btn carousel-btn-next" onClick={goNext}>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+      )}
+
+      <div className="carousel-dots">
+        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+          <div
+            key={i}
+            className={`carousel-dot ${i === current ? 'active' : ''}`}
+            onClick={() => setCurrent(i)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ── FAQ ──────────────────────────────────────────────────────────────────────
 const faqs = [
   { q: "What types of ecommerce brands do you work with?", a: "We work with DTC ecommerce brands doing $500K+ in annual revenue, primarily in fashion, health & wellness, beauty, home, and food & beverage. If you're scaling a physical product online, we're built for you." },
@@ -788,6 +986,7 @@ function ContactForm() {
 
 // ── Mount ────────────────────────────────────────────────────────────────────
 ReactDOM.render(<CreativeStrips />, document.getElementById('creative-root'));
+ReactDOM.render(<CaseStudyCarousel />, document.getElementById('results-carousel'));
 ReactDOM.render(<FAQ />, document.getElementById('faq-root'));
 ReactDOM.render(<ContactForm />, document.getElementById('contact-root'));
 </script>
