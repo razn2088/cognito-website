@@ -316,7 +316,7 @@
               {/* Left */}
               <div>
                 <h1 style={{ fontSize:'clamp(40px,5.5vw,68px)', fontWeight:900, lineHeight:1.04, letterSpacing:'-0.03em', color:'#f8fafc', marginBottom:'24px' }}>
-                  Grow Your Brand.<br />Scale Your Revenue.<br /><span className="gradient-text">Perform Better.</span>
+                  Powering Accelerated Growth<br />With Data-Driven<br /><span className="gradient-text">Performance.</span>
                 </h1>
 
                 <p style={{ fontSize:'18px', lineHeight:1.7, color:'#94a3b8', marginBottom:'40px', maxWidth:'480px' }}>
@@ -585,7 +585,7 @@
                   <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', borderBottom:'1px solid rgba(255,255,255,0.06)' }}>
                     {c.results.map((r,j) => (
                       <div key={j} style={{ padding:'20px 16px', textAlign:'center', borderRight: j<2 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                        <div style={{ fontSize:'22px', fontWeight:800, color: r.v.startsWith('+') || r.v.startsWith('−') || r.v.startsWith('-') ? '#34d399' : '#60a5fa', letterSpacing:'-0.02em', marginBottom:'4px' }}>{r.v}</div>
+                        <div style={{ fontSize:'22px', fontWeight:800, color: r.v.startsWith('+') || r.v.startsWith('\u2212') || r.v.startsWith('-') ? '#34d399' : '#60a5fa', letterSpacing:'-0.02em', marginBottom:'4px' }}>{r.v}</div>
                         <div style={{ fontSize:'11px', color:'#64748b', lineHeight:1.4 }}>{r.m}</div>
                         <div style={{ fontSize:'10px', color:'#334155', marginTop:'3px' }}>{r.p}</div>
                       </div>
@@ -916,6 +916,7 @@
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
+
 
   <!-- Responsive layout styles -->
   <style>
